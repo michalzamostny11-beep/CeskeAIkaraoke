@@ -217,7 +217,7 @@ private fun parseLrc(raw: String): List<LyricLine> {
         val min = m.groupValues[1].toLong(); val sec = m.groupValues[2].toLong()
         val fraction = m.groupValues[3].padEnd(3, '0').take(3).toLongOrNull() ?: 0L
         LyricLine(min * 60_000 + sec * 1000 + fraction, m.groupValues[4])
-    }.sortedBy { it.timeMs }
+    }.sortedBy { it.timeMs }.toList()
 }
 
 private fun formatTime(ms: Long): String = "%d:%02d".format(ms / 60000, (ms / 1000) % 60)
